@@ -1,5 +1,5 @@
 function Greetings(props){
-
+//no need to initiate a const
     switch(props.lang){
         case "de":
         return <div>Hello {props.children}</div>;

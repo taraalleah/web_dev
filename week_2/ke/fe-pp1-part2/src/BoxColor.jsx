@@ -20,8 +20,6 @@ function rgbToHex(r, g, b) {
     border: "1px solid black",
   };
 
-//how make other one black?
-
 return (
     <div className="box-color">
         <div style={boxStyle}>
