@@ -1,6 +1,7 @@
 import "./App.css";
 import CreditCard from "./CreditCard.jsx"; 
 import BoxColor from "./BoxColor.jsx";
+import Greetings from "./Greetings.jsx";
 
 function App() {
   return (
@@ -50,6 +51,17 @@ function App() {
       <BoxColor r={128} g={255} b={0} />
     </div>
 
+    <div className="boxed">
+      <Greetings lang="de">Ludwig</Greetings>
+    </div>
+
+    <div className="boxed">
+      <Greetings lang="fr">François</Greetings>
+    </div>
+
+    <div className="boxed">
+      <Greetings lang="fi">Sami</Greetings>
+    </div>
   </>
   
   );
