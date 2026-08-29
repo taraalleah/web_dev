@@ -1,0 +1,33 @@
+/* App.css */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.header {
+  background-color: #333;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+.main {
+  display: flex;
+  justify-content: space-around;
+  padding: 2rem;
+}
+
+section {
+  border: 1px solid #ddd;
+  padding: 1rem;
+  text-align: center;
+}
+
+.footer {
+  background-color: #333;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
