@@ -6,7 +6,7 @@ const logger = require("./middleware/logger");
 const notFound = require("./middleware/notFound");
 
 // Middleware to parse JSON
-//app.use(express.json());
+app.use(express.json());
 
 app.use(logger);
  
