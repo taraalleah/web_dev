@@ -1,0 +1,73 @@
+body {
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    margin: 0;
+    padding: 24px 0;
+    background-image: url('assets/chii.jpg');
+    background-size: cover;
+    background-position: center;
+    /* background: #f6f7fb; */
+    color: #111827;
+}
+
+h2 {
+    width: min(560px, 92vw);
+    margin: 0 auto 12px;
+}
+
+form {
+    width: min(560px, 92vw);
+    margin: 0 auto;
+    padding: 20px;
+    background: rgb(255, 250, 192);
+    border: 1px solid #7f6e31;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+form>div {
+    display: grid;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+label {
+    font-weight: 600;
+}
+
+input,
+select,
+textarea {
+    font: inherit;
+    padding: 10px 12px;
+    border: 1px solid #7f6e31;
+    border-radius: 8px;
+    outline: none;
+    background: #fff;
+}
+
+textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #6b7cff;
+    box-shadow: 0 0 0 3px rgba(107, 124, 255, 0.2);
+}
+
+button {
+    font: inherit;
+    padding: 10px 14px;
+    border: none;
+    border-radius: 10px;
+    background: #59440f;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #5566ff;
+}
