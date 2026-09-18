@@ -17,26 +17,36 @@ You are a professional travel advisor. A traveler is planning a trip with the fo
 - Interests: ${preferences}
 - Travel Style: ${travelStyle}
 
-Based on this information, create a detailed tour recommendation.
+Based on this information, recommend a suitable tour.
 
-Please include:
-1. Tour Name
-2. Short Description
-3. Highlights (list 4-5 key activities)
-4. Why this tour matches their preferences
-5. Estimated price range
-6. Best season to visit
-7. Special tips for travelers
+IMPORTANT: Respond ONLY in valid JSON using the following structure:
 
-Format your response in clear markdown with headings and bullet points.
+{
+  "tourName": "",
+  "shortDescription": "",
+  "highlights": [],
+  "whyItMatches": "",
+  "estimatedPriceRange": "",
+  "bestSeasonToVisit": "",
+  "specialTips": []
+}
+
+Do not include any text before or after the JSON. Do not wrap it in markdown code blocks.
+Fill all fields with appropriate content for this traveler.
   `.trim();
 
   try {
     const result = await generateContent(prompt);
 
-    const text = result?.text ?? result?.candidates?.[0]?.content?.parts
-      ?.map(part => part?.text ?? '')
-      .join('\n') ?? 'No recommendation returned from Gemini.';
+    const text = result?.text ??
+      result?.candidates?.[0]?.content?.parts
+        ?.map((part) => part?.text ?? '')
+        .join('\n') ??
+      'No recommendation returned from Gemini.';
+
+    if (process.env.DEBUG_GEMINI === 'true') {
+      console.log('Raw AI Response:', text);
+    }
 
     return text;
   } catch (error) {
