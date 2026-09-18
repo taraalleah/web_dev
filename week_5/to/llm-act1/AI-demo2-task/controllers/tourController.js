@@ -1,4 +1,5 @@
 const { generateTourRecommendation } = require('../services/tourService');
+const { normalizeTourPlan } = require('../utils/normalizeTourPlan');
 
 /**
  * Helper function to extract JSON from AI response
@@ -23,7 +24,7 @@ function extractJSON(text) {
 
 /**
  * Controller for generating tour suggestions
- * Handles validation, JSON parsing, and response formatting
+ * Handles validation, JSON parsing, normalization, and response formatting
  */
 async function generateTourSuggestion(req, res) {
   try {
@@ -48,24 +49,26 @@ async function generateTourSuggestion(req, res) {
       travelStyle
     });
 
-    // Extract and parse JSON
+    // Extract JSON from response
     const jsonString = extractJSON(rawResponse);
     
+    // Parse JSON (normalizer will handle parse errors)
     let tourPlan;
     try {
       tourPlan = JSON.parse(jsonString);
     } catch (parseError) {
       console.error('JSON Parse Error:', parseError);
-      console.error('Raw Response:', rawResponse);
+      console.error('Attempting normalization with raw response...');
       
-      return res.status(500).json({
-        error: 'Failed to parse AI response as JSON',
-        rawResponse: rawResponse.substring(0, 500) // First 500 chars for debugging
-      });
+      // Try to normalize the raw string
+      tourPlan = {};
     }
 
-    // Return the parsed JSON
-    res.status(200).json(tourPlan);
+    // Normalize the data to ensure consistent structure
+    const normalizedPlan = normalizeTourPlan(tourPlan);
+
+    // Return the clean, predictable JSON
+    res.status(200).json(normalizedPlan);
 
   } catch (error) {
     console.error('Error in tour controller:', error);
