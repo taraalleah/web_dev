@@ -4,11 +4,18 @@ import SignupComponent from "./pages/SignupComponent";
 import LoginComponent from "./pages/LoginComponent";
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
+import Profile from "./pages/Profile";
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(
-    JSON.parse(localStorage.getItem("user")) || false
-  );
+  const [isAuthenticated, setIsAuthenticated] = useState(() => {
+    //JSON.parse(localStorage.getItem("user")) || false
+
+    // This runs ONCE on mount, never again
+    const user = JSON.parse(localStorage.getItem("user"));
+    return user && user.token ? true : false;
+  });
+
+  //console.log("App re-rendered, isAuthenticated:", isAuthenticated)
   return (
     <>
       <BrowserRouter>
@@ -41,6 +48,10 @@ function App() {
                   <Navigate to="/" />
                 )
               }
+            />
+            <Route
+              path="/profile"
+              element={isAuthenticated ? <Profile /> : <Navigate to="/login" />}
             />
           </Routes>
         </div>
